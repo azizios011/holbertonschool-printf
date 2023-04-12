@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdarg.h>
+#include <stdio.h>
+#include <stdarg.h>
 #include"main.h"
 /**
  * _printf - check the code
@@ -8,8 +8,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int c, i = 0;
-	char *s;
+	int i = 0;
 	va_list args;
 
 	va_start(args, format);
@@ -20,41 +19,43 @@ int _printf(const char *format, ...)
 			format++;
 			switch (*format)
 			{
-				case 'c':
-				c = va_arg(args, int);
-				{
+				case 'c': {
+					char c = va_arg(args, int);
+
 					putchar(c);
 					i++;
+					break;
 				}
 				case 's':
-				s = va_arg(args, char *);
 				{
+					char *s = va_arg(args, char*);
+
 					while (*s != '\0')
 					{
 						putchar(*s);
-						s++;
 						i++;
+						s++;
 					}
+					break;
 				}
 				case '%':
 				{
 					putchar('%');
 					i++;
+					break;
 				}
-				{
-					putchar('%');
-					putchar(*format);
-					i += 2;
+				default:
+				break;
 				}
-			}
 		}
 		else
 		{
-		putchar(*format);
-		i++;
+			putchar(*format);
+			i++;
 		}
 		format++;
 		}
+
 	va_end(args);
 	return (i);
 }
