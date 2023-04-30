@@ -1,61 +1,24 @@
-#include <stdio.h>
-#include <stdarg.h>
 #include"main.h"
 /**
- * _printf - check the code
- * @format : format of the function
- * Return: Always 0.
+ * _printf - prints formatted output to stdout
+ * @format: the format string
+ *
+ * Return: the number of characters printed
  */
 int _printf(const char *format, ...)
 {
-	int i = 0;
 	va_list args;
+	int count = 0;
 
 	va_start(args, format);
-	while (*format != '\0')
+	while (*format)
 	{
 		if (*format == '%')
-		{
-			format++;
-			switch (*format)
-			{
-				case 'c': {
-					char c = va_arg(args, int);
-
-					putchar(c);
-					i++;
-					break;
-				}
-				case 's':
-				{
-					char *s = va_arg(args, char*);
-
-					while (*s != '\0')
-					{
-						putchar(*s);
-						i++;
-						s++;
-					}
-					break;
-				}
-				case '%':
-				{
-					putchar('%');
-					i++;
-					break;
-				}
-				default:
-				break;
-				}
-		}
+			count = print_argument(*(++format), args, count);
 		else
-		{
-			putchar(*format);
-			i++;
-		}
+			count += putchar(*format);
 		format++;
-		}
-
+	}
 	va_end(args);
-	return (i);
+	return (count);
 }
