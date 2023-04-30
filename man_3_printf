@@ -1,0 +1,48 @@
+MAN(3)                        Library Functions Manual                        MAN(3)
+
+NAME
+       _printf - formatted output conversion
+
+SYNOPSIS
+       #include <stdio.h>
+       #include <stdarg.h>
+
+       int _printf(const char *format, ...);
+
+DESCRIPTION
+       The  _printf() function is used to print formatted output to the standard output stream (stdout).
+       It takes a format string and optional arguments as input, formats them according to the format string,
+       and prints the result to the standard output stream.
+
+       The format string contains format specifications, which begin with a '%' character and are followed by
+       one or more conversion specifiers. The conversion specifiers specify the type of data to be printed and
+       the format in which it should be printed.
+
+RETURN VALUE
+       The _printf() function returns the number of characters printed to the standard output stream.
+
+EXAMPLES
+       The following example demonstrates the use of _printf():
+
+           _printf("Hello, %s! You are %d years old.\n", "John", 25);
+
+       Output:
+           Hello, John! You are 25 years old.
+
+       The following format specifiers are supported:
+
+       %c      Prints a single character
+       %s      Prints a string of characters
+       %d      Prints an integer in base 10
+
+SEE ALSO
+       printf(3), fprintf(3), sprintf(3), vprintf(3)
+
+STANDARDS
+       The _printf() function conforms to the ISO C standard.
+
+NOTES
+       This function is not thread-safe.
+
+AUTHOR
+       Written by [Azizios].
