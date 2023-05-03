@@ -1,24 +1,44 @@
 #include"main.h"
 /**
- * _printf - prints formatted output to stdout
- * @format: the format string
- *
- * Return: the number of characters printed
- */
+ * _printf - check the code
+ * @format: fromat of the function.
+ * Return: EXIT_SUCCESS.
+*/
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0;
+	int num_chars_printed = 0;
+	int i = 0;
+	int j;
+
+	print_fn_t print_fn[] = {
+		{'c', print_char},
+		{'s', print_string},
+		{'%', print_percent},
+		{0, NULL},
+	};
 
 	va_start(args, format);
-	while (*format)
+	while (format && format[i])
 	{
-		if (*format == '%')
-			count = print_argument(*(++format), args, count);
+		if (format[i] == '%')
+		{
+			i++;
+			for (j = 0; print_fn[j].fn; j++)
+			{
+				if (format[i] == print_fn[j].c)
+				{
+					num_chars_printed += print_fn[j].fn(args);
+					break;
+				}
+			}
+		}
 		else
-			count += putchar(*format);
-		format++;
+		{
+			num_chars_printed += _putchar(format[i]);
+		}
+		i++;
 	}
 	va_end(args);
-	return (count);
+	return (num_chars_printed);
 }
