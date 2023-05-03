@@ -1,12 +1,25 @@
-#ifndef HEADER
-#define HEADER
+#ifndef HEADER_FILE
+#define HEADER_FILE
 
-#include <stdio.h>
 #include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
+
+/**
+ * struct print_fn_s - check the code
+ * @c: character
+ * @fn: function pointer
+ * Return: Always 0.
+*/
+typedef struct print_fn_s
+{
+	char c;
+	int (*fn)(va_list);
+} print_fn_t;
 
 int _printf(const char *format, ...);
-int print_argument(char specifier, va_list args, int count);
-int print_char(char c);
-int print_string(char* str);
-int print_integer(int params);
+int _putchar(char c);
+int print_char(va_list args);
+int print_string(va_list args);
+int print_percent(va_list args);
 #endif
