@@ -1,10 +1,13 @@
 #include"main.h"
 /**
- * print_char - print on single character
- * @c: character
- * Return: character.
+ * print_char - check the code
+ * @args: argumment string
+ * Return: Always 0.
 */
-int print_char(char c)
+int print_char(va_list args)
 {
-	return (putchar(c));
+	char c;
+
+	c = va_arg(args, int);
+	return (_putchar(c));
 }
