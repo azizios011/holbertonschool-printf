@@ -1,16 +1,21 @@
 #include"main.h"
 /**
- * print_string -print a string
- * @str: pointer to string
- * Return: a string.
+ * print_string - check the code
+ * @args: argumment string
+ * Return: Always 0.
 */
-int print_string(char *str)
+int print_string(va_list args)
 {
-	int count = 0;
+	char *str = va_arg(args, char *);
+	int num_chars_printed = 0;
 
+	if (str == NULL)
+		str = "(null)";
 	while (*str)
 	{
-		count += putchar(*str++);
+		_putchar(*str);
+		str++;
+		num_chars_printed++;
 	}
-	return (count);
+	return (num_chars_printed);
 }
