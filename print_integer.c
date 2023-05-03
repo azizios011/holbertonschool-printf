@@ -1,22 +1,45 @@
 #include"main.h"
 /**
- * print_integer - print an integer
- * @num: the integer
- * Return: an integer.
+ * print_d - check the code
+ * @params: integer argument
+ * Return: Always 0.
 */
-int print_integer(int num)
+int print_d(va_list params)
 {
-	int count = 0;
+	unsigned int absolute, aux, count, countnum;
+	int n;
 
-	if (num < 0)
+	count = 0;
+	n = va_arg(params, int);
+	if (n < 0)
 	{
-		count += putchar('-');
-		num = -num;
+		absolute = (n * -1);
+		count += _putchar('-');
 	}
-	if (num > 9)
+	else
+		absolute = n;
+
+	aux = absolute;
+	countnum = 1;
+	while (aux > 9)
 	{
-		count += print_integer(num / 10);
+		aux /= 10;
+		countnum *= 10;
 	}
-	count += putchar(num % 10 + '0');
+	while (countnum >= 1)
+	{
+		count += _putchar(((absolute / countnum) % 10) + '0');
+		countnum /= 10;
+	}
 	return (count);
+}
+/**
+ * print_i - prints integer
+ * @params: integer argument
+ * Return: the decimal function
+ */
+
+int print_i(va_list params)
+{
+	return (print_d(params));
 }
